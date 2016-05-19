@@ -13,10 +13,6 @@ import com.backendless.persistence.QueryOptions;
 import com.backendless.servercode.BackendlessConfig;
 import com.backendless.servercode.IBackendlessService;
 import com.backendless.servercode.InvocationContext;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
 import test.helpers.Helper;
 import test.models.*;
 
@@ -260,6 +256,16 @@ public class Service implements IBackendlessService {
         throw new Exception("Test exception");
     }
 
+    public void throwBackendlessExceptionWithCode() throws Exception {
+
+        throw new BackendlessException( "123", "message ooo", 303 );
+
+    }
+
+    public void throwBackendlessException() throws Exception {
+        throw new BackendlessException("Test exception");
+    }
+
     public void loginUserWithInvalidEmail() {
         Backendless.UserService.login("ABC", "DEF");
     }
@@ -382,27 +388,27 @@ public class Service implements IBackendlessService {
         return InvocationContext.getUserToken();
     }
 
-    public StringBuffer test() throws Throwable {
-        String url = "http://api.backendless.com";
-        HttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet(url);
-
-        // add request header
-        //request.addHeader("User-Agent", "");
-        HttpResponse response = client.execute(request);
-
-        System.out.println("Response Code : "
-                + response.getStatusLine().getStatusCode());
-
-        BufferedReader rd = new BufferedReader(
-                new InputStreamReader(response.getEntity().getContent()));
-
-        StringBuffer result = new StringBuffer();
-        String line = "";
-        while ((line = rd.readLine()) != null) {
-            result.append(line);
-        }
-        return result;
-    }
+//    public StringBuffer test() throws Throwable {
+//        String url = "http://api.backendless.com";
+//        HttpClient client = HttpClientBuilder.create().build();
+//        HttpGet request = new HttpGet(url);
+//
+//        // add request header
+//        //request.addHeader("User-Agent", "");
+//        HttpResponse response = client.execute(request);
+//
+//        System.out.println("Response Code : "
+//                + response.getStatusLine().getStatusCode());
+//
+//        BufferedReader rd = new BufferedReader(
+//                new InputStreamReader(response.getEntity().getContent()));
+//
+//        StringBuffer result = new StringBuffer();
+//        String line = "";
+//        while ((line = rd.readLine()) != null) {
+//            result.append(line);
+//        }
+//        return result;
+//    }
 
 }

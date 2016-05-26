@@ -257,11 +257,11 @@ public class Service implements IBackendlessService {
     }
 
     public void throwExceptionWithCodeAndMessage() throws Exception {
-        throw new BackendlessException( "code", "message" );
+        throw new BackendlessException( "123", "message" );
     }
 
     public void throwExceptionWithHttpCode() throws Exception {
-        throw new BackendlessException("code", "message", 444 );
+        throw new BackendlessException("1234", "message", 444 );
     }
 
     public void loginUserWithInvalidEmail() {

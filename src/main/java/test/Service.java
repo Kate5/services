@@ -252,18 +252,16 @@ public class Service implements IBackendlessService {
         return Backendless.Data.of(Person.class).save(person);
     }
 
-    public void throwExceptionMethod() throws Exception {
-        throw new Exception("Test exception");
+    public void throwExceptionWithMessage() throws Exception {
+        throw new BackendlessException("message");
     }
 
-    public void throwBackendlessExceptionWithCode() throws Exception {
-
-        throw new BackendlessException( "123", "message ooo", 303 );
-
+    public void throwExceptionWithCodeAndMessage() throws Exception {
+        throw new BackendlessException( "code", "message" );
     }
 
-    public void throwBackendlessException() throws Exception {
-        throw new BackendlessException("Test exception");
+    public void throwExceptionWithHttpCode() throws Exception {
+        throw new BackendlessException("code", "message", 444 );
     }
 
     public void loginUserWithInvalidEmail() {
